@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from "../../environments/environment";
 import * as moment from 'moment';
 
 const jwt = new JwtHelperService();
@@ -17,7 +18,7 @@ class DecodedToken {
 })
 export class AuthService {
 
-  private uriseg = 'http://localhost:5000/api/users';
+  private uriseg = `${environment.url}/login`;
   private decodedToken;
 
   constructor(private http: HttpClient) {
