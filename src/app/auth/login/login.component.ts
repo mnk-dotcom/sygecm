@@ -45,14 +45,17 @@ export class LoginComponent implements OnInit {
 
 	login(): void {
 		this.errors = [];
-		// this.auth.login(this.loginForm.value)
-		// 	.subscribe(
-		// 		(token) => {
-		// 			this.router.navigate(['/'], { queryParams: { loggedin: 'success' } });
-		// 		},
-		// 		(errorResponse) => {
-		// 			this.errors.push(errorResponse.error.error);
-		// 		});
-		this.router.navigate(['/'], { queryParams: { loggedin: 'success' } });
+		delete this.loginForm.value.email; 
+		this.loginForm.value.login = 'admin';
+		this.loginForm.value.password = 'admin';
+		this.auth.login(this.loginForm.value)
+			.subscribe(
+				(token) => {
+					console.log(token);
+					this.router.navigate(['/'], { queryParams: { loggedin: 'success' } });
+				},
+				(errorResponse) => {
+					this.errors.push(errorResponse.error.error);
+				});
 	}
 }

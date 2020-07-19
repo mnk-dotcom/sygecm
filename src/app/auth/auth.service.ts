@@ -18,7 +18,7 @@ class DecodedToken {
 })
 export class AuthService {
 
-  private uriseg = `${environment.url}/login`;
+  private uriseg = environment.url;
   private decodedToken;
 
   constructor(private http: HttpClient) {
@@ -32,9 +32,7 @@ export class AuthService {
 
   public login(userData: any): Observable<any> {
     const URI = this.uriseg + '/login';
-    return this.http.post(URI, userData).pipe(map(token => {
-      return this.saveToken(token);
-    }));
+    return this.http.post(URI, userData);
   }
 
   private saveToken(token: any): any {
